@@ -46,7 +46,7 @@ The output looks like this (expanded tiles marked in red):
 
 ### Worked example
 
-Imagine we want to generate code that prints out some greetings.
+Imagine that we want to generate code that prints out some greetings.
 
 ```python
 def greet(name):
@@ -82,7 +82,7 @@ code = tile("""
             import sys
 
             @{greet('Alice')}
-            if len(sys.argv) > 1 and 'also-greet-bob' in sys.argv:
+            if 'also-greet-bob' in sys.argv:
                 @{greet('Bob')} 
             """)
 
@@ -93,9 +93,11 @@ Here's the output. Note how the greeting code is properly aligned in both
 cases, thus forming a valid Python program.
 
 ```python
+import sys
+
 print 'Hello, Alice!'
 print 'Welcome!'
-if len(sys.argv) > 1 and 'also-greet-bob' in sys.argv:
+if 'also-greet-bob' in sys.argv:
     print 'Hello, Bob!'
     print 'Welcome!
 ```
