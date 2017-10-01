@@ -43,3 +43,34 @@ print output
 The output looks like this (expanded tiles marked in red):
 
 ![](output.png)
+
+### Worked example
+
+Imagine we want to generate code that prints out some greetings.
+
+```python
+def greet(name):
+    return "print 'Hello, " + name + "!'\nprint 'Welcome!'" 
+```
+
+Although there is no particular need for manipulating rectangular areas of text
+here tiling can be employed to make the code more readable.
+
+```python
+def greet(name):
+    return tile("""
+                print 'Hello, @{name}!'
+                print 'Welcome!'
+                """)
+```
+
+Given that whitespace surrounding the tile is ignored anyway we can neatly
+align the generated code with the generator code instead of writing an
+abomination like this:
+
+```python
+def greet(name):
+    return tile("""print 'Hello, @{name}!'
+print 'Welcome!'""")
+```
+
