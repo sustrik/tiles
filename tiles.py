@@ -32,12 +32,8 @@ def __trim(arg):
         first = len(s[i]) - len(s[i].lstrip())
         if left == -1 or first < left:
             left = first
-    if top == -1:
-        top = 0
-    r = []
-    for i in range(top, bottom + 1):
-        r.append(s[i][left:].rstrip())
-    return r
+    top = max(top, 0)
+    return [s[i][left:].rstrip() for i in range(top, bottom + 1)]
 
 def __append(curr, val):
     w = max([len(s) for s in curr or [""]])
@@ -67,3 +63,4 @@ def tile(s):
             pos = end + 1
         res += curr
     return "\n".join(res)
+
