@@ -9,7 +9,7 @@ Tile is a standard Python string. However, one should keep in mind that
 conceptually it's just the ractangular area of text that counts. All the
 surrounding whitespace has no significance.
 
-![](tile.png)
+![](pics/tile.png)
 
 The module provides a single function that can be used to combine smaller
 tiles to create larger tiles:
@@ -42,7 +42,7 @@ print output
 
 The output looks like this (expanded tiles marked in red):
 
-![](output.png)
+![](pics/output.png)
 
 ### Worked example
 
