@@ -100,3 +100,29 @@ if len(sys.argv) > 1 and 'also-greet-bob' in sys.argv:
     print 'Welcome!
 ```
 
+### Tiling algorithm
+
+For reference, this is how the tiling algorithm works.
+
+It parses the supplied string line by line. Each line consists of literal
+text mixed with `@{}` expressions. Each piece of literal text is kept as is
+while each `@{}` expression is evaluated and replaced by the resulting tile.
+
+Thus, a line like this:
+
+```
+Colors: @{colors}     Shapes: @{shapes}
+```
+
+Is rendered like this. Tiles are shown in red frames. Literal text in blue
+frames.
+
+![](pics/output2.png)
+
+The entire line forms a tile, shown in black. When the tiling algorithm moves
+to the next line it will render it below the black tile. The text generated
+by individual lines can therefore never collide.
+
+Finally, after all lines are processed, the entire result is treated as a time
+and stripped of any surrounding whitespace.
+
