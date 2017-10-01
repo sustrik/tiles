@@ -40,15 +40,6 @@ output = tile("""
 print output
 ```
 
-The output looks like this:
+The output looks like this (expanded tiles marked in red):
 
-```
-Colors: White           Shapes: Triangle
-        Black                   Circle
-        Ultramarine
-        Red
-        Green
-        Blue
-
-That's all, folks!
-```
+![](output.png)
