@@ -74,3 +74,29 @@ def greet(name):
 print 'Welcome!'""")
 ```
 
+Another consequence of using tiles is that the greeting function can be used
+in different contexts and the indentation will allways be right.
+
+```python
+code = tile("""
+            import sys
+
+            @{greet('Alice')}
+            if len(sys.argv) > 1 and 'also-greet-bob' in sys.argv:
+                @{greet('Bob')} 
+            """)
+
+print code
+```
+
+Here's the output. Note how the greeting code is properly aligned in both
+cases, thus forming a valid Python program.
+
+```python
+print 'Hello, Alice!'
+print 'Welcome!'
+if len(sys.argv) > 1 and 'also-greet-bob' in sys.argv:
+    print 'Hello, Bob!'
+    print 'Welcome!
+```
+
