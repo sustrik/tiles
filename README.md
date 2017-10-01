@@ -11,4 +11,44 @@ surrounding whitespace has no significance.
 
 ![](tile.png)
 
+The module provides a single function that can be used to combine smaller
+tiles to create larger tiles:
 
+```python
+from tiles import tile
+
+colors = """
+         White
+         Black
+         Ultramarine
+         Red
+         Green
+         Blue
+         """
+
+shapes = """
+         Triangle
+         Circle
+         """
+
+output = tile("""
+              Colors: @{colors}     Shapes: @{shapes}
+
+              That's all, folks!
+              """)
+
+print output
+```
+
+The output looks like this:
+
+```
+Colors: White           Shapes: Triangle
+        Black                   Circle
+        Ultramarine
+        Red
+        Green
+        Blue
+
+That's all, folks!
+```
