@@ -6,16 +6,9 @@ This is particularly important if proper *indentation* of generated code is
 desired.
 
 Tile is a standard Python string. However, one should keep in mind that
-conceptually it's just the ractangular area of non-whitespace characters
-that counts.
+conceptually it's just the ractangular area of text that counts. All the
+surrounding whitespace has no significance.
 
-```
-s = """
-
-         Hello,
-           world!
-
-    """
-```
+![](tile.png)
 
 
