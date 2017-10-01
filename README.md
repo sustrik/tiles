@@ -1,13 +1,13 @@
 # Tiles
 
 *Tiles* is a simple Python module meant to help with **code generation**.
-It provides a way to deal with **rectangular areas of text** as atomic units.
+It provides a way to work with **rectangular areas of text** as atomic units.
 This is particularly important if proper **indentation** of generated code is
 desired.
 
 Tile is a standard Python string. However, one should keep in mind that
-conceptually it's just the ractangular area of text that counts. All the
-surrounding whitespace has no significance.
+it's just the ractangular area of text that counts. All the surrounding
+whitespace has no significance.
 
 ![](pics/tile.png)
 
@@ -54,7 +54,7 @@ def greet(name):
 ```
 
 Although there is no particular need for manipulating rectangular areas of text
-here tiling can be employed to make the code more readable.
+in this case tiling can be employed to make the code more readable.
 
 ```python
 def greet(name):
@@ -75,7 +75,7 @@ print 'Welcome!'""")
 ```
 
 Another consequence of using tiles is that the greeting function can be used
-in different contexts and the indentation will allways be right.
+in different contexts and the indentation will allways fit.
 
 ```python
 code = tile("""
@@ -105,8 +105,8 @@ if len(sys.argv) > 1 and 'also-greet-bob' in sys.argv:
 For reference, this is how the tiling algorithm works.
 
 It parses the supplied string line by line. Each line consists of literal
-text mixed with `@{}` expressions. Each piece of literal text is kept as is
-while each `@{}` expression is evaluated and replaced by the resulting tile.
+text mixed with @{} expressions. Each piece of literal text is kept as is
+while each @{} expression is evaluated and replaced by the resulting tile.
 
 Thus, a line like this:
 
@@ -123,6 +123,6 @@ The entire line forms a tile, shown in black. When the tiling algorithm moves
 to the next line it will render it below the black tile. The text generated
 by individual lines can therefore never collide.
 
-Finally, after all lines are processed, the entire result is treated as a time
+Finally, after all lines are processed, the entire result is treated as a tile
 and stripped of any surrounding whitespace.
 
