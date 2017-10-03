@@ -18,49 +18,38 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-import inspect
+from inspect import currentframe
+from itertools import dropwhile
 
-def __trim(arg):
-    s = arg.split("\n")
-    top = -1; bottom = 0; left = -1
-    for i in range(len(s)):
-        if len(s[i].strip()) == 0:
-            continue
-        bottom = i
-        if top == -1:
-           top = i
-        first = len(s[i]) - len(s[i].lstrip())
-        if left == -1 or first < left:
-            left = first
-    top = max(top, 0)
-    return [s[i][left:].rstrip() for i in range(top, bottom + 1)]
+def __trim(t):
+    lns = [ln.rstrip() for ln in t.split("\n")]
+    lns = [ln for ln in dropwhile(lambda ln: len(ln) == 0, lns)]
+    lns = [ln for ln in dropwhile(lambda ln: len(ln) == 0, reversed(lns))]
+    left = min([len(ln) - len(ln.lstrip()) for ln in lns])
+    return [ln[left:] for ln in lns]
 
-def __append(curr, val):
-    w = max([len(s) for s in curr or [""]])
-    for i in range(len(val)):
-        if i >= len(curr):
-            curr.append("")
-        curr[i] = curr[i].ljust(w) + val[i]
+def __append(t1, t2):
+    t1 += [""] * (len(t2) - len(t1))
+    w = max([len(s) for s in t1 or [""]])
+    for i in range(len(t2)):
+        t1[i] = t1[i].ljust(w) + t2[i]
 
 def tile(s):
-    globs = inspect.currentframe().f_back.f_globals
-    locs = inspect.currentframe().f_back.f_locals
-    lns = __trim(s)
+    lns = s.split("\n")
     res = []
-    for i in range (len(lns)):
-        curr = []
-        pos = 0
+    for ln in lns:
+        curr = []; end = 0
         while True:
-            start = lns[i].find("@{", pos)
-            __append(curr, [lns[i][pos : (len(lns[i]) if start == -1 else start)]])
+            start = ln.find("@{", end)
+            __append(curr, [ln[end : (len(ln) if start == -1 else start)]])
             if start == -1:
                 break
-            end = lns[i].find("}", start)
-            if end == -1:
+            end = ln.find("}", start) + 1
+            if end == 0:
                 raise Exception("unifinished @{} expression")
-            val = __trim(str(eval(lns[i][start + 2 : end], globs, locs)))
-            __append(curr, val)
-            pos = end + 1
+            __append(curr, __trim(str(eval(ln[start + 2 : end - 1],
+                currentframe().f_back.f_globals,
+                currentframe().f_back.f_locals))))
         res += curr
     return "\n".join(res)
 
