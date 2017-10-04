@@ -26,9 +26,11 @@ def __trim(t):
     lns = [ln for ln in dropwhile(lambda ln: len(ln) == 0, lns)]
     lns = [ln for ln in dropwhile(lambda ln: len(ln) == 0, reversed(lns))]
     left = min([len(ln) - len(ln.lstrip()) for ln in lns])
-    return [ln[left:] for ln in lns]
+    return [ln[left:] for ln in reversed(lns)]
 
 def __append(t1, t2):
+    print "t1 = ", t1
+    print "t2 = ", t2
     t1 += [""] * (len(t2) - len(t1))
     w = max([len(s) for s in t1 or [""]])
     for i in range(len(t2)):

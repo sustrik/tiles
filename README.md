@@ -102,6 +102,33 @@ if 'also-greet-bob' in sys.argv:
     print 'Welcome!
 ```
 
+### Another worked example
+
+Tiling can be also used to generate code with clean vertical alignment.
+Consider the case where we have a lists or argument names and types and we
+want to generate a nicely formatted C function declaration.
+
+```python
+args = ["foo", "bar", "baz"]
+types = ["int", "char*", "struct quux"]
+
+print tile(r'void frobnicate('
+           r'@{"\n".join(types)} '
+           r'@{"\n".join(args)}'
+           r'@{",\n" * (len(args) - 1) + ");"}'
+          )
+```
+
+The tile with argument names is put next to the tile with argument types.
+This is done on tile, not line, level which means that all the argument
+names stay aligned with each other.
+
+```c
+void frobnicate(int         foo, 
+                char*       bar,
+                struct quux baz);
+```
+
 ### Tiling algorithm
 
 For reference, this is how the tiling algorithm works.
