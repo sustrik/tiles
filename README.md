@@ -107,24 +107,28 @@ if 'also-greet-bob' in sys.argv:
 For reference, this is how the tiling algorithm works.
 
 It parses the supplied string line by line. Each line consists of literal
-text mixed with @{} expressions. Each piece of literal text is kept as is
-while each @{} expression is evaluated and replaced by the resulting tile.
+text mixed with @{} expressions. Each piece of literal text is kept as is.
+Each @{} expression is evaluated and replaced by the resulting tile. Both
+the literal text and the tiles are aligned to the top of the line.
 
 Thus, a line like this:
 
 ```
 Colors: @{colors}     Shapes: @{shapes}
+
+That's all, folks!
 ```
 
-Is rendered like this. Tiles are shown in red frames. Literal text in blue
-frames.
+Is rendered like this. Tiles are shown in red frames. Literal text is in blue
+frames. Black lines mark boundaries between individual lines.
 
 ![](pics/output2.png)
 
-The entire line forms a tile, shown in black. When the tiling algorithm moves
-to the next line it will render it below the black tile. The text generated
-by individual lines can therefore never collide.
+Note 1: Output of tile() function itself is not stripped off
+the surrounding whitespace. This allows for generating programs that start
+or end with empty lines. If you want to remove the whitespace you can do
+so like this: `tile("@{code}")`
 
-Finally, after all lines are processed, the entire result is treated as a tile
-and stripped of any surrounding whitespace.
+Note 2: If you need sequence `@{` to appear in the output (and not be treated
+like an embedded expression) it can be done like this: `@{'@'}{`
 
