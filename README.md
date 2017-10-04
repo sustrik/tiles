@@ -1,6 +1,6 @@
 # Tiles
 
-**Tiles** is a simple Python module meant to help with **code generation**.
+> **Tiles** is a simple Python module meant to help with **code generation**.
 It provides a way to work with **rectangular areas of text** as atomic units.
 This is particularly important if proper **indentation** of generated code is
 desired.
