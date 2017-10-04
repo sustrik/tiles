@@ -132,3 +132,7 @@ so like this: `tile("@{code}")`
 Note 2: If you need sequence `@{` to appear in the output (and not be treated
 like an embedded expression) it can be done like this: `@{'@'}{`
 
+Note 3: The trailing whitespace that is required to keep the rectangular shape
+of a tile doesn't get into the output. This makes the algorithm friendy to
+different tools that complain about whitespace at the end of a line.
+
