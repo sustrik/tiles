@@ -36,7 +36,7 @@ def __append(t1, t2):
     for i in range(len(t2)):
         t1[i] = t1[i].ljust(w) + t2[i]
 
-def tile(s):
+def __tile(s, g, l):
     lns = s.split("\n")
     res = []
     for ln in lns:
@@ -49,9 +49,16 @@ def tile(s):
             end = ln.find("}", start) + 1
             if end == 0:
                 raise Exception("unifinished @{} expression")
-            __append(curr, __trim(str(eval(ln[start + 2 : end - 1],
-                currentframe().f_back.f_globals,
-                currentframe().f_back.f_locals))))
+            __append(curr, __trim(str(eval(ln[start + 2 : end - 1], g, l))))
         res += curr
     return "\n".join(res)
+
+def tile(s):
+    return __tile(s,
+                  currentframe().f_back.f_globals,
+                  currentframe().f_back.f_locals)
+
+def load(filename, **kwargs):
+    with open(filename, 'r') as f:
+        return __tile(f.read(), kwargs, None)
 
