@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Martin Sustrik  All rights reserved.
+# Copyright (c) 2019 Martin Sustrik  All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"),
@@ -36,7 +36,12 @@ def __append(t1, t2):
     for i in range(len(t2)):
         t1[i] = t1[i].ljust(w) + t2[i]
 
-def __tile(s, g, l):
+def __merge(x, y):
+    z = x.copy()
+    z.update(y)
+    return z
+
+def tile(s, globals=None, locals=None):
     lns = s.split("\n")
     res = []
     for ln in lns:
@@ -49,16 +54,32 @@ def __tile(s, g, l):
             end = ln.find("}", start) + 1
             if end == 0:
                 raise Exception("unifinished @{} expression")
-            __append(curr, __trim(str(eval(ln[start + 2 : end - 1], g, l))))
+            __append(curr, __trim(str(eval(ln[start + 2 : end - 1],
+                globals if globals else currentframe().f_back.f_globals,
+                locals if locals else currentframe().f_back.f_locals))))
         res += curr
     return "\n".join(res)
 
-def tile(s):
-    return __tile(s,
-                  currentframe().f_back.f_globals,
-                  currentframe().f_back.f_locals)
+def join(lst, s, sep="", last="", globals=None, locals=None):
+    g = globals if globals else currentframe().f_back.f_globals
+    l = locals if locals else currentframe().f_back.f_locals
+    sep = sep.split("\n")
+    last = last.split("\n")
+    res = []
+    for idx, item in enumerate(lst):
+        __append(res, __trim(tile(s, globals=g, locals=__merge(l, item))))
+        __append(res, sep if idx < len(lst) - 1 else last)
+    return "\n".join(res)
 
-def load(filename, **kwargs):
-    with open(filename, 'r') as f:
-        return __tile(f.read(), kwargs, None)
+def joinv(lst, s, sep="", last="", globals=None, locals=None):
+    g = globals if globals else currentframe().f_back.f_globals
+    l = locals if locals else currentframe().f_back.f_locals
+    sep = sep.split("\n")
+    last = last.split("\n")
+    res = ""
+    for idx, item in enumerate(lst):
+        t = __trim(tile(s, globals=g, locals=__merge(l, item)))
+        __append(t, sep if idx < len(lst) - 1 else last)
+        res += "\n".join(t) + "\n"
+    return res
 
