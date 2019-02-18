@@ -27,7 +27,7 @@ def __trim(t):
     lns = [ln for ln in dropwhile(lambda ln: len(ln) == 0, reversed(lns))]
     lf  = filter(bool, lns)
     left = 0 if not lf else \
-           min([len(ln) - len(ln.lstrip()) for ln in lf])
+           min([len(ln) - len(ln.lstrip()) for ln in lf], default=0)
     return [ln[left:] for ln in reversed(lns)]
 
 def __append(t1, t2):
