@@ -33,7 +33,7 @@ All the surrounding whitespace is of no significance.
 
 ![](pics/tiles1.png)
 
-This makes it easy to align tile literls with the rest of the program. Given
+This makes it easy to align tile literals with the rest of the program. Given
 that the whitespace doesn't count, the literal can be shifted as much to the
 left or right as needed:
 
@@ -179,7 +179,7 @@ Green  Blue
        White
 ```
 
-# Joining many tiles
+### Joining many tiles
 
 Joining works similarly to joining strings:
 
