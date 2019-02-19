@@ -251,6 +251,7 @@ tile we need to use a different construct when we actually want the surrounding
 whitespace to appear in the tile. `t%` can be used to achive that.
 
 `t/"   foo   "` produces `foo` tile.
+
 `t%"   foo   "` produces `   foo   ` tile.
 
 ```python
