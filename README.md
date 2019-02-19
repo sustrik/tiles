@@ -250,8 +250,8 @@ Given that standard tile literals cut off the surrounding whitespace from the
 tile we need to use a different construct when we actually want the surrounding
 whitespace to appear in the tile. `t%` can be used to achive that.
 
-So, while `t/"   foo   "` results in "foo" `t%"   foo   "` produces
-"   foo   " tile.
+`t/"   foo   "` produces `foo` tile.
+`t%"   foo   "` produces `   foo   ` tile.
 
 ```python
 tile = (t%", ").join([t/"square", t/"circle", t/"triangle"])
