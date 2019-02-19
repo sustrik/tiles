@@ -326,7 +326,7 @@ On the picture below you can see how are individual tiles combined to produce
 the final output. Tiles are shown in red frames. Literal text is in blue frames.
 Black lines mark boundaries between individual lines.
 
-![](pics/output.png)
+![](pics/output2.png)
 
 ### Worked example 2
 
