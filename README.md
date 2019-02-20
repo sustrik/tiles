@@ -5,16 +5,16 @@ It provides a way to work with **rectangular areas of text** as atomic units.
 This is particularly important if proper **indentation** of the generated code
 is desired.
 
-[Import the module](#import-the-module)
-[Tile literals](#tile-literals)
-[Tile interpolation](#tile-interpolation)
-[Combining tiles](#combining-tiles)
-[Joining many tiles](#joining-many-tiles)
-[Working with whitespace](#working-with-whitespace)
-[Worked example 1](#worked-example-1)
-[Worked example 2](#worked-example-2)
-[Worked example 3](#worked-example-3)
-[Notes](#notes)
+1. [Import the module](#import-the-module)
+2. [Tile literals](#tile-literals)
+3. [Tile interpolation](#tile-interpolation)
+4. [Combining tiles](#combining-tiles)
+5. [Joining many tiles](#joining-many-tiles)
+6. [Working with whitespace](#working-with-whitespace)
+7. [Worked example 1](#worked-example-1)
+8. [Worked example 2](#worked-example-2)
+9. [Worked example 3](#worked-example-3)
+10. [Notes](#notes)
 
 ### Import the module
 
