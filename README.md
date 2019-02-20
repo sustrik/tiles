@@ -439,3 +439,6 @@ rectangular shape of a tile doesn't get into the output. This makes the
 algorithm friendy to different tools that complain about whitespace
 at the end of a line.
 
+Note 3: To provide a better feeling of how a real-world code using tiles
+look like, [here's](https://gist.github.com/sustrik/305e9f6a768c582a0189bae5f5d327af)
+a fairly long program generating some man pages and a C header file.
