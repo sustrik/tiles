@@ -5,6 +5,17 @@ It provides a way to work with **rectangular areas of text** as atomic units.
 This is particularly important if proper **indentation** of the generated code
 is desired.
 
+[Import the module](#import-the-module)
+[Tile literals](#tile-literals)
+[Tile interpolation](#tile-interpolation)
+[Combining tiles](#combining-tiles)
+[Joining many tiles](#joining-many-tiles)
+[Working with whitespace](#working-with-whitespace)
+[Worked example 1](#worked-example-1)
+[Worked example 2](#worked-example-2)
+[Worked example 3](#worked-example-3)
+[Notes](#notes)
+
 ### Import the module
 
 ```python
@@ -421,7 +432,8 @@ void frobnicate(int         foo,
 Note 1: If you need sequence `@{` to appear in the output (and not be treated
 like an embedded expression) it can be done like this: `@{'@'}{`
 
-Note 2: The trailing whitespace that is required to keep the rectangular shape
-of a tile doesn't get into the output. This makes the algorithm friendy to
-different tools that complain about whitespace at the end of a line.
+Note 2: With `t/`, the trailing whitespace that is required to keep the
+rectangular shape of a tile doesn't get into the output. This makes the
+algorithm friendy to different tools that complain about whitespace
+at the end of a line.
 
