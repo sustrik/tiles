@@ -369,8 +369,8 @@ abomination like this one:
 
 ```python
 def greet(name):
-    return tile("""print('Hello, @{name}!')
-print('Welcome!')""")
+    return """print('Hello, """ + name + """!')
+print('Welcome!')"""
 ```
 
 Another consequence of using tiles is that the greeting function can be used
