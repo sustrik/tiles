@@ -289,7 +289,7 @@ tile = t/"""
          Green
          """
 
-tile += t%"" | t/"""
+tile |= t%"" | t/"""
                  Red
                  Blue
                  White
