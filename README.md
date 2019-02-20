@@ -341,6 +341,8 @@ Black lines mark boundaries between individual lines.
 
 ![](pics/output2.png)
 
+Note how tiles are always aligned to the top of the line.
+
 ### Worked example 2
 
 Imagine that we want to generate code that prints out some greetings.
