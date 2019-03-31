@@ -94,3 +94,4 @@ class _tile:
 
 t = _tile([])
 
+emptyln = t%""

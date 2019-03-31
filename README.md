@@ -259,7 +259,27 @@ triangle;
 
 Given that standard tile literals cut off the surrounding whitespace from the
 tile we need to use a different construct when we actually want the surrounding
-whitespace to appear in the tile. `t%` can be used to achive that.
+whitespace to appear in the tile.
+
+The most common use case is when there's a need to add an empty line to a tile.
+`emptyln` is a tile containing only a single empty line:
+
+```python
+tile = t/"Hello" | emptyln | t/"world"
+println(tile)
+
+```
+
+Prints:
+
+```
+Hello
+
+world
+```
+
+`emtyln` is really just a shortcut for `t%""`  where `t%` is similar to `t/`
+except that it doesn't cut off the whitespace.
 
 (In the example below ␣ stands for space.)
 
