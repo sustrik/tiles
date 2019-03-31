@@ -19,7 +19,7 @@ is desired.
 ### Import the module
 
 ```python
-from tiles import t
+from tiles import t, emptyln
 ```
 
 ### Tile literals
